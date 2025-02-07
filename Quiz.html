@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Web Programming Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: #4CAF50;
+        }
+
+        header p {
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .question input[type="radio"] {
+            margin-top: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #results {
+            text-align: center;
+            font-size: 1.2em;
+            margin-top: 30px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #777;
+        }
+
+        footer p {
+            font-size: 0.9em;
+        }
+
+        #timer {
+            font-size: 1.2em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1>Web Programming Quiz</h1>
+            <p>Test your knowledge of Web Programming fundamentals!</p>
+        </header>
+
+        <section>
+            <div id="timer">Time remaining: <span id="time">20</span> seconds</div>
+            <div id="results"></div>
+            <form name="quizForm" onsubmit="return submitAnswers()">
+                <div class="question" id="q1">
+                    <h3>1. Which HTML tag is used to define an image?</h3>
+                    <input type="radio" name="q1" value="a" id="q1a" onclick="startTimer()">a. &lt;img&gt;<br>
+                    <input type="radio" name="q1" value="b" id="q1b" onclick="startTimer()">b. &lt;image&gt;<br>
+                    <input type="radio" name="q1" value="c" id="q1c" onclick="startTimer()">c. &lt;picture&gt;<br>
+                    <input type="radio" name="q1" value="d" id="q1d" onclick="startTimer()">d. &lt;src&gt;<br>
+                </div>
+
+                <div class="question" id="q2">
+                    <h3>2. Which attribute is used to specify the destination URL of a hyperlink in HTML?</h3>
+                    <input type="radio" name="q2" value="a" id="q2a" onclick="startTimer()">a. href<br>
+                    <input type="radio" name="q2" value="b" id="q2b" onclick="startTimer()">b. src<br>
+                    <input type="radio" name="q2" value="c" id="q2c" onclick="startTimer()">c. link<br>
+                    <input type="radio" name="q2" value="d" id="q2d" onclick="startTimer()">d. url<br>
+                </div>
+
+                <div class="question" id="q3">
+                    <h3>3. Which CSS property is used to change the background color of an element?</h3>
+                    <input type="radio" name="q3" value="a" id="q3a" onclick="startTimer()">a. color<br>
+                    <input type="radio" name="q3" value="b" id="q3b" onclick="startTimer()">b. background-color<br>
+                    <input type="radio" name="q3" value="c" id="q3c" onclick="startTimer()">c. background<br>
+                    <input type="radio" name="q3" value="d" id="q3d" onclick="startTimer()">d. bg-color<br>
+                </div>
+
+                <div class="question" id="q4">
+                    <h3>4. What does the "id" attribute in HTML represent?</h3>
+                    <input type="radio" name="q4" value="a" id="q4a" onclick="startTimer()">a. It is used to assign a class to an element.<br>
+                    <input type="radio" name="q4" value="b" id="q4b" onclick="startTimer()">b. It is used to uniquely identify an element.<br>
+                    <input type="radio" name="q4" value="c" id="q4c" onclick="startTimer()">c. It specifies the source of an image.<br>
+                    <input type="radio" name="q4" value="d" id="q4d" onclick="startTimer()">d. It is used to set the type of an input field.<br>
+                </div>
+
+                <div class="question" id="q5">
+                    <h3>5. What is the purpose of the JavaScript "console.log()" method?</h3>
+                    <input type="radio" name="q5" value="a" id="q5a" onclick="startTimer()">a. It writes text to the webpage.<br>
+                    <input type="radio" name="q5" value="b" id="q5b" onclick="startTimer()">b. It logs messages to the browser console.<br>
+                    <input type="radio" name="q5" value="c" id="q5c" onclick="startTimer()">c. It defines a function.<br>
+                    <input type="radio" name="q5" value="d" id="q5d" onclick="startTimer()">d. It displays alerts to the user.<br>
+                </div>
+
+                <div class="submit-btn">
+                    <input type="submit" value="Submit Answers">
+                </div>
+            </form>
+        </section>
+
+        <footer>
+            <p>&copy; 2025, All Rights Reserved | Web Programming Quiz</p>
+        </footer>
+    </div>
+
+    <script type="text/javascript">
+        var timeRemaining = 20; // Set the time limit to 20 seconds
+        var timerInterval;
+
+        // Start the countdown timer
+        function startTimer() {
+            if (timeRemaining === 20) {  // Start timer only the first time
+                timerInterval = setInterval(function() {
+                    document.getElementById("time").textContent = timeRemaining;
+                    timeRemaining--;
+
+                    if (timeRemaining < 0) {
+                        clearInterval(timerInterval);
+                        alert("Time's up! Your quiz will be submitted automatically.");
+                        submitAnswers(); // Submit the quiz when time is up
+                    }
+                }, 1000); // Update the time every second
+            }
+        }
+
+        // Function to submit the answers and calculate the score
+        function submitAnswers() {
+            var total = 5;
+            var score = 0;
+
+            // Get User Input
+            var q1 = document.forms["quizForm"]["q1"].value;
+            var q2 = document.forms["quizForm"]["q2"].value;
+            var q3 = document.forms["quizForm"]["q3"].value;
+            var q4 = document.forms["quizForm"]["q4"].value;
+            var q5 = document.forms["quizForm"]["q5"].value;
+
+            // Validation
+            for(i = 1; i <= total; i++){
+                if(eval('q'+i) == null || eval('q'+i) == ''){
+                    alert('You missed question '+ i);
+                    return false;
+                }
+            }
+
+            // Set Correct Answers
+            var answers = ["a", "a", "b", "b", "b"];
+            var correctAnswers = {
+                q1: "a. &lt;img&gt;",
+                q2: "a. href",
+                q3: "b. background-color",
+                q4: "b. It is used to uniquely identify an element.",
+                q5: "b. It logs messages to the browser console."
+            };
+
+            // Check Answers
+            for(i = 1; i <= total; i++){
+                if(eval('q'+i) == answers[i - 1]){
+                    score++;
+                }
+            }
+
+            // Display Correct Answers below the questions
+            document.getElementById("q1").innerHTML += "<p><strong>Answer:</strong> " + correctAnswers.q1 + "</p>";
+            document.getElementById("q2").innerHTML += "<p><strong>Answer:</strong> " + correctAnswers.q2 + "</p>";
+            document.getElementById("q3").innerHTML += "<p><strong>Answer:</strong> " + correctAnswers.q3 + "</p>";
+            document.getElementById("q4").innerHTML += "<p><strong>Answer:</strong> " + correctAnswers.q4 + "</p>";
+            document.getElementById("q5").innerHTML += "<p><strong>Answer:</strong> " + correctAnswers.q5 + "</p>";
+
+            // Display score
+            document.getElementById('results').innerHTML = '<h3>You scored <span>' + score + '</span> out of <span>' + total + '</span></h3>';
+
+            return false;
+        }
+    </script>
+</body>
+</html>
