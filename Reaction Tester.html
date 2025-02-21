@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faster Time Game</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Verdana, Geneva, sans-serif;
+            background: url("https://images5.alphacoders.com/796/thumb-1920-796108.jpg") no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            position: relative;
+        }
+        .info {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            text-align: left;
+        }
+        h1 {
+            font-size: 32px;
+        }
+        p {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        #box {
+            width: 120px;
+            height: 120px;
+            display: none;
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            text-align: center;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="info">
+        <h1>Test Your eyesight!</h1>
+        <p>Your time: <span id="time">0</span>s</p>
+    </div>
+
+    <div id="box"></div>
+
+    <script>
+        function getRandomColor() {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        let clickedTime, createdTime, reactionTime;
+
+        function makeBox() {
+            let time = Math.random() * 3000 + 500; // Random delay between 0.5s - 3.5s
+            
+            setTimeout(() => {
+                let shape = Math.random() > 0.5 ? "50%" : "0"; // Circle or square
+                let size = Math.floor(Math.random() * 100) + 50; // Random size 50px - 150px
+                let top = Math.random() * (window.innerHeight - 150);
+                let left = Math.random() * (window.innerWidth - 150);
+                let color = getRandomColor();
+                
+                $("#box").css({
+                    "border-radius": shape,
+                    "width": size + "px",
+                    "height": size + "px",
+                    "top": top + "px",
+                    "left": left + "px",
+                    "background-color": color,
+                    "display": "flex",
+                    "opacity": "0"
+                }).text("Press").animate({ opacity: 1 }, 300);
+                
+                createdTime = Date.now();
+            }, time);
+        }
+
+        $("#box").click(function() {
+            clickedTime = Date.now();
+            reactionTime = ((clickedTime - createdTime) / 1000).toFixed(3);
+            $("#time").text(reactionTime);
+            $(this).fadeOut(200, makeBox);
+        });
+
+        makeBox();
+    </script>
+
+</body>
+</html>
