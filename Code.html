@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Player</title>
+    
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('https://d.newsweek.com/en/full/1506960/rick-morty-season-4-release-date.webp?w=1400&f=ae3b9a05e6469434a7fd768e846f505b.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #c9d1d9;
+            margin: 0;
+            padding: 0;
+        }
+        #container {
+            width: 80%;
+            margin: 20px auto;
+            background: rgba(22, 27, 34, 0.9);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        #titlebar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #010409;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        #runButton button {
+            background: #238636;
+            border: none;
+            padding: 12px 18px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.3s, transform 0.2s;
+        }
+        #runButton button:hover {
+            background: #2ea043;
+            transform: scale(1.05);
+        }
+        .codecontainer {
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+        }
+        .containerTitle {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #58a6ff;
+        }
+        .code {
+            width: 100%;
+            height: 200px;
+            padding: 12px;
+            border: 2px solid #30363d;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            resize: vertical;
+            background: #0d1117;
+            color: #c9d1d9;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .resultContainer {
+            border: 2px solid #30363d;
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 10px;
+            background: #161b22;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        #resultFrame {
+            width: 100%;
+            height: 250px;
+            border: none;
+            background: #0d1117;
+        }
+        .ui-tabs-nav {
+            background: #010409;
+            padding: 8px;
+            border-radius: 8px 8px 0 0;
+        }
+        .ui-tabs-anchor {
+            color: #58a6ff !important;
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        $(function() {
+            $("#tabs").tabs(); 
+            $("#run").click(function() {
+                $('#resultFrame').contents().find('html').html("<style>" + 
+                    $('#css').val() + "</style>" + $("#html").val());
+                document.getElementById('resultFrame').contentWindow.eval($('#js').val());
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="container">
+        <div id="titlebar">
+            <div id="title">Code Player</div>
+            <div id="runButton">
+                <button id="run">Run</button>
+            </div>
+        </div>
+        <div id="tabs">
+            <ul>
+                <li><a href="#htmlContainer">HTML</a></li>
+                <li><a href="#cssContainer">CSS</a></li>
+                <li><a href="#jsContainer">JS</a></li>
+                <li><a href="#resultContainer">Result</a></li>
+            </ul>
+            <div class="codecontainer" id="htmlContainer">
+                <span class="containerTitle">HTML</span>
+                <textarea class="code" id="html"></textarea>
+            </div>
+            <div class="codecontainer" id="cssContainer">
+                <span class="containerTitle">CSS</span>
+                <textarea class="code" id="css"></textarea>
+            </div>
+            <div class="codecontainer" id="jsContainer">
+                <span class="containerTitle">JS</span>
+                <textarea class="code" id="js"></textarea>
+            </div>
+            <div class="codecontainer" id="resultContainer">
+                <span class="containerTitle">Result</span>
+                <div class="resultContainer">
+                    <iframe id="resultFrame"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
