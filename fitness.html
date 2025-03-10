@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🏋️ Fitness Tracker</h1>
+
+        <div class="card tracker">
+            <h2>Log Your Workout</h2>
+            <input type="text" id="exercise" placeholder="Exercise (e.g., Sit Up)">
+            <input type="number" id="duration" placeholder="Duration (minutes)">
+            <button onclick="logWorkout()">➕ Add Workout</button>
+        </div>
+
+        <div class="card goals">
+            <h2>Set Your Goal</h2>
+            <input type="number" id="goal" placeholder="Target minutes per week">
+            <button onclick="setGoal()">🎯 Set Goal</button>
+        </div>
+
+        <div class="card history">
+            <h2>Workout History</h2>
+            <ul id="workout-list"></ul>
+        </div>
+
+        <div class="card progress">
+            <h2>Progress</h2>
+            <p id="progress-text">No workouts logged yet.</p>
+        </div>
+
+        <div class="card video-section">
+            <h2>Exercise Guide 🎥</h2>
+            <iframe id="exercise-video" width="100%" height="315" 
+                src="https://www.youtube.com/embed/1fbU_MkV7NE" frameborder="0" 
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="card description">
+            <h2>About Sit-Ups</h2>
+            <p>💡 Sit-ups strengthen the core, improve posture, and build abdominal muscles.</p>
+            <h3>Steps to Perform a Sit-Up:</h3>
+            <ol>
+                <li>Lie on your back with knees bent and feet flat on the floor.</li>
+                <li>Place hands behind your head or cross them over your chest.</li>
+                <li>Engage your core and lift your upper body towards your knees.</li>
+                <li>Slowly lower yourself back down without jerking.</li>
+                <li>Repeat for the desired number of reps.</li>
+            </ol>
+        </div>
+
+        <div class="card meal-plan">
+            <h2>Recommended Meal Plan 🍽️</h2>
+            <p>🍎 To maximize fitness results, follow a balanced meal plan:</p>
+            <ul>
+                <li><strong>Breakfast:</strong> Oatmeal with bananas and almonds</li>
+                <li><strong>Lunch:</strong> Grilled chicken with brown rice & vegetables</li>
+                <li><strong>Snack:</strong> Greek yogurt with berries</li>
+                <li><strong>Dinner:</strong> Salmon with quinoa and steamed broccoli</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
